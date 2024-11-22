@@ -20,3 +20,28 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/people', methods=['GET'])
+def get_people():
+    
+    response_body = [
+        {"name": "Luke", "age": 23},
+        {"name": "Leia", "age": 23}
+    ]
+
+    return jsonify(response_body), 200
+
+@api.route('/vehicles', methods=['POST', 'GET', 'PUT'])
+def handle_vehicles():
+    
+    if request.method == 'POST':
+        response = {"message": "We received a POST request." }
+        return jsonify(response), 201
+    elif request.method == 'GET':
+        response = {"message": "We received a GET request." }
+        return jsonify(response), 200
+    else:
+        response = {"message": "ERROR: Unable to process request." }
+        return jsonify(response), 404
+        
+
